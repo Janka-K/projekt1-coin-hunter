@@ -22,7 +22,7 @@ let startpositionY = document.getElementById("panacek").style.top = String(yInde
 
 
 function getActualPosition(){
-	return document.getElementById("panacek").getBoundingClientRect();	
+	return document.getElementById("panacek").getBoundingClientRect(); //metoda vraci vice nez jednu hodnotu!!!	
 }
 
 

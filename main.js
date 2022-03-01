@@ -33,6 +33,14 @@ function getActualPosition(){
 function move(e){
 	e = e || window.event;
 	let makeStep;
+	let panacekX = document.getElementById("panacek").getBoundingClientRect().x;
+	let panacekY = document.getElementById("panacek").getBoundingClientRect().y;
+	let panacekWidth = document.getElementById("panacek").getBoundingClientRect().width;
+	let panacekHeight = document.getElementById("panacek").getBoundingClientRect().height;
+	let minceX = document.getElementById("mince").getBoundingClientRect().x;
+	let minceY = document.getElementById("mince").getBoundingClientRect().y;
+	let minceHeight = document.getElementById("mince").getBoundingClientRect().height;
+	let minceWidth = document.getElementById("mince").getBoundingClientRect().width;
 	if (e.keyCode === 37){
 		if (getActualPosition().left <= 0){
 			makeStep = document.getElementById("panacek").style.left = 0 + sizeValuePx;
@@ -50,7 +58,12 @@ function move(e){
 	
 	}else if (e.keyCode === 40){
 		makeStep = document.getElementById("panacek").style.top = getActualPosition().top +stepValueRight + sizeValuePx;
-		console.log(makeStep);
+		
+	}
+	if(!(panacekX + panacekWidth < minceX || minceX + minceWidth < panacekX || panacekY + panacekHeight < minceY || minceY + minceHeight < panacekY)){
+		console.log("Protnuto");
+	}else{
+		console.log("Neprotnuto");
 	}
 }
 
@@ -66,13 +79,15 @@ function coinRandomPositionY(){
 
 
 
-
-
-/* je potreba doresit **Při každém pohybu testujeme, zda se panáček neprotíná s mincí - v JS připravená podmínka pro průnik dvou obdélníků.**
+/*HOTOVO **Při každém pohybu testujeme, zda se panáček neprotíná s mincí - v JS připravená podmínka pro průnik dvou obdélníků.**
 /*if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || panacekY + panacekVyska < minceY || minceY + minceVyska < panacekY)) {
-
 */
 
+
+/* JE POTREBA DORESIT PREDELANI FUNKCE MOVE(), POTREBUJEME UDELAT NOVOU FUNKCI,KTERA BUDE VYHODNOCOVAT,ZDA SE PANACEK A MINCE 
+PROTNULY -->> ABY FUNKCE MOVE BYLA PREHLEDNEJSI A NEBYLA TAK NABOBTNANA */
+
+/* DALE JE POTREBA VYRESIT, ABY SE MINCE PRESUNULA / ZMIZELA NA JINE NAHODNE MISTO (TJ ABY TO VYPADALO,ZE PANACEK ZEZRAL MINCI)*/
 
 
 

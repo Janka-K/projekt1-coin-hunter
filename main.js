@@ -20,9 +20,7 @@ let stepValueLeft = -50;
 let startPositionX= document.getElementById("panacek").style.left = String(xIndex) + sizeValuePct;
 let startpositionY = document.getElementById("panacek").style.top = String(yIndex) + sizeValuePct;
 
-let coinPositionX = document.getElementById("mince").style.left = coinRandomPositionX() + sizeValuePx;
-let coinPositionY = document.getElementById("mince").style.top = coinRandomPositionY() + sizeValuePx;
-
+coinMove();
 
 
 function getActualPosition(){
@@ -60,11 +58,14 @@ function move(e){
 		makeStep = document.getElementById("panacek").style.top = getActualPosition().top +stepValueRight + sizeValuePx;
 		
 	}
+
 	if(!(panacekX + panacekWidth < minceX || minceX + minceWidth < panacekX || panacekY + panacekHeight < minceY || minceY + minceHeight < panacekY)){
-		console.log("Protnuto");
+		coinMove();
 	}else{
 		console.log("Neprotnuto");
 	}
+	playMusic();
+
 }
 
 
@@ -78,17 +79,23 @@ function coinRandomPositionY(){
 }
 
 
+//funkce vygeneruje minci na nahodne pozici
+
+function coinMove(){
+	let moveX = document.getElementById("mince").style.left = coinRandomPositionX() + sizeValuePx;
+	let moveY = document.getElementById("mince").style.top = coinRandomPositionY() + sizeValuePx;
+
+}
+
+function playMusic(){
+	let music = document.getElementById("hudba");
+	music.play();
+}
 
 /*HOTOVO **Při každém pohybu testujeme, zda se panáček neprotíná s mincí - v JS připravená podmínka pro průnik dvou obdélníků.**
 /*if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || panacekY + panacekVyska < minceY || minceY + minceVyska < panacekY)) {
 */
 
-
-/* JE POTREBA DORESIT, PROC JE MINCE A PANACEK PROTNUTY I PO OPUSTENI MINCE*/
-/* JE POTREBA DORESIT PREDELANI FUNKCE MOVE(), POTREBUJEME UDELAT NOVOU FUNKCI,KTERA BUDE VYHODNOCOVAT,ZDA SE PANACEK A MINCE 
-PROTNULY -->> ABY FUNKCE MOVE BYLA PREHLEDNEJSI A NEBYLA TAK NABOBTNANA */
-
-/* DALE JE POTREBA VYRESIT, ABY SE MINCE PRESUNULA / ZMIZELA NA JINE NAHODNE MISTO (TJ ABY TO VYPADALO,ZE PANACEK ZEZRAL MINCI)*/
 
 
 

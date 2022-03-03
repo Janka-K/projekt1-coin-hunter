@@ -33,3 +33,7 @@ Možná vylepšení, pro ultimátní zážitek ze hry!
 - Přidáme score a při sebrání mince přičítáme.
 - Při score > 5 přehrajeme fanfáru a zobrazíme vítěznou hlášku.
 - Při posunu panáčka ho natočíme do správného směru.
+
+- NEPOVINNE EXTRA UKOLY
+
+* Uzivatel dostane na vyber zda chce hrat na cas nebo pocet bodu

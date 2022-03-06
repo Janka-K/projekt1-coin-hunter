@@ -57,13 +57,8 @@ function move(e) {
         getActualPosition().left + stepValueLeft + sizeValuePx;
     }
   } else if (e.keyCode === 39) {
-    if (getActualPosition().left > window.innerWidth) {
-      makeStep = document.getElementById("panacek").style.left =
-        window.innerWidth + sizeValuePx;
-    } else {
-      makeStep = document.getElementById("panacek").style.left =
-        getActualPosition().left + stepValueRight + sizeValuePx;
-    }
+    makeStep = document.getElementById("panacek").style.left =
+      getActualPosition().left + stepValueRight + sizeValuePx;
   } else if (e.keyCode === 38) {
     if (getActualPosition().top <= 0) {
       makeStep = document.getElementById("panacek").style.top = 0 + sizeValuePx;

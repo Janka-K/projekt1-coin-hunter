@@ -17,18 +17,23 @@ let sizeValuePx = "px";
 let stepValueRight = 50;
 let stepValueLeft = -50;
 
-let startPositionX= document.getElementById("panacek").style.left = String(xIndex) + sizeValuePct;
-let startpositionY = document.getElementById("panacek").style.top = String(yIndex) + sizeValuePct;
+
+let gameSound = "hudba";
+let coinSound = "zvukmince";
+
+
+let startPositionX = document.getElementById("panacek").style.left = String(xIndex) + sizeValuePct;
+let startPositionY = document.getElementById("panacek").style.top = String(yIndex) + sizeValuePct;
 
 coinMove();
 
 
-function getActualPosition(){
+function getActualPosition() {
 	return document.getElementById("panacek").getBoundingClientRect(); //metoda vraci vice nez jednu hodnotu!!!	
 }
 
 
-function move(e){
+function move(e) {
 	e = e || window.event;
 	let makeStep;
 	let panacekX = document.getElementById("panacek").getBoundingClientRect().x;
@@ -39,65 +44,75 @@ function move(e){
 	let minceY = document.getElementById("mince").getBoundingClientRect().y;
 	let minceHeight = document.getElementById("mince").getBoundingClientRect().height;
 	let minceWidth = document.getElementById("mince").getBoundingClientRect().width;
-	if (e.keyCode === 37){
-		if (getActualPosition().left <= 0){
+	if (e.keyCode === 37) {
+		if (getActualPosition().left <= 0) {
 			makeStep = document.getElementById("panacek").style.left = 0 + sizeValuePx;
-		}else{
+		} else {
 			makeStep = document.getElementById("panacek").style.left = getActualPosition().left + stepValueLeft + sizeValuePx;
 		}
-	}else if (e.keyCode === 39){
-		makeStep = document.getElementById("panacek").style.left = getActualPosition().left + stepValueRight + sizeValuePx;
-	}else if (e.keyCode === 38){
-		if (getActualPosition().top <= 0){
-			makeStep = document.getElementById("panacek").style.top = 0 + sizeValuePx;
+	} else if (e.keyCode === 39) {
+		if (getActualPosition().left > window.innerWidth){
+			makeStep = document.getElementById("panacek").style.left = window.innerWidth + sizeValuePx;
+		
 		}else {
+			makeStep = document.getElementById("panacek").style.left = getActualPosition().left + stepValueRight + sizeValuePx;
+		}
+	} else if (e.keyCode === 38) {
+		if (getActualPosition().top <= 0) {
+			makeStep = document.getElementById("panacek").style.top = 0 + sizeValuePx;
+		} else {
 			makeStep = document.getElementById("panacek").style.top = getActualPosition().top + stepValueLeft + sizeValuePx;
 		}
-	
-	}else if (e.keyCode === 40){
-		makeStep = document.getElementById("panacek").style.top = getActualPosition().top +stepValueRight + sizeValuePx;
-		
+
+	} else if (e.keyCode === 40) {
+		makeStep = document.getElementById("panacek").style.top = getActualPosition().top + stepValueRight + sizeValuePx;
+
 	}
 
-	if(!(panacekX + panacekWidth < minceX || minceX + minceWidth < panacekX || panacekY + panacekHeight < minceY || minceY + minceHeight < panacekY)){
+	if (!(panacekX + panacekWidth < minceX || minceX + minceWidth < panacekX || panacekY + panacekHeight < minceY || minceY + minceHeight < panacekY)) {
+		playSound(coinSound);
 		coinMove();
-	}else{
-		console.log("Neprotnuto");
-	}
-	playMusic();
+	} 
+	playSound(gameSound);
 
 }
 
 
-function coinRandomPositionX(){
+function coinRandomPositionX() {
 	return Math.floor(Math.random() * window.innerWidth + 1);
 
 }
 
-function coinRandomPositionY(){
+function coinRandomPositionY() {
 	return Math.floor(Math.random() * window.innerHeight + 1);
 }
 
 
 //funkce vygeneruje minci na nahodne pozici
 
-function coinMove(){
+function coinMove() {
 	let moveX = document.getElementById("mince").style.left = coinRandomPositionX() + sizeValuePx;
 	let moveY = document.getElementById("mince").style.top = coinRandomPositionY() + sizeValuePx;
 
 }
 
-function playMusic(){
-	let music = document.getElementById("hudba");
+
+//funkce vyvola hudbu na pozadi, prehraje zvuk mince pri jejim sebrani panackem //
+
+function playSound(elementId) {
+	let music = document.getElementById(elementId);
 	music.play();
 }
 
-/*HOTOVO **Při každém pohybu testujeme, zda se panáček neprotíná s mincí - v JS připravená podmínka pro průnik dvou obdélníků.**
+
+
+
+/*Při každém pohybu testujeme, zda se panáček neprotíná s mincí - v JS připravená podmínka pro průnik dvou obdélníků.**
 /*if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || panacekY + panacekVyska < minceY || minceY + minceVyska < panacekY)) {
 */
 
 
-
+/* -->> je potreba osetrit panacka,aby nezalezal do prave strany a smerem dolu */ 
 
 
 

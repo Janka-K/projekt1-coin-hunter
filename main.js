@@ -20,6 +20,7 @@ let stepValueLeft = -10;
 
 let gameSound = "hudba";
 let coinSound = "zvukmince";
+let fanfareSound = "zvukfanfara";
 
 
 let startPositionX = document.getElementById("panacek").style.left = String(xIndex) + sizeValuePct;
@@ -75,6 +76,8 @@ function move(e) {
 	if (!(panacekX + panacekWidth < minceX || minceX + minceWidth < panacekX || panacekY + panacekHeight < minceY || minceY + minceHeight < panacekY)) {
 		playSound(coinSound);
 		coinMove();
+		scoreCount();
+		
 	} 
 	playSound(gameSound);
 
@@ -108,13 +111,24 @@ function playSound(elementId) {
 }
 
 
+let count = 0;
+
+function scoreCount(){
+	count = count + 1;
+	let score  = document.getElementById("score").innerHTML = count;
+	if (count === 3){
+		playSound(fanfareSound);
+		}
+}
+
 
 /*Při každém pohybu testujeme, zda se panáček neprotíná s mincí - v JS připravená podmínka pro průnik dvou obdélníků.**
 /*if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || panacekY + panacekVyska < minceY || minceY + minceVyska < panacekY)) {
 */
 
 
-
+/* je potreba zobrazit viteznou hlasku po dosazeni ciloveho poctu bodu */
+/* je potreba zajistit,aby se panacek natacel do spravne strany */
 
 
 

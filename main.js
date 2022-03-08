@@ -46,18 +46,21 @@ function move(e) {
 	let minceHeight = document.getElementById("mince").getBoundingClientRect().height;
 	let minceWidth = document.getElementById("mince").getBoundingClientRect().width;
 	if (e.keyCode === 37) {
+		let makeDirection = document.getElementById("panacek").src = 'obrazky/panacek-vlevo.png';
 		if (getActualPosition().left <= 0) {
 			makeStep = document.getElementById("panacek").style.left = 0 + sizeValuePx;
 		} else {
 			makeStep = document.getElementById("panacek").style.left = getActualPosition().left + stepValueLeft + sizeValuePx;
 		}
 	} else if (e.keyCode === 39) {
+		let makeDirection = document.getElementById("panacek").src = 'obrazky/panacek-vpravo.png'
 		if (getActualPosition().right < window.innerWidth){
 			makeStep = document.getElementById("panacek").style.left = getActualPosition().left + stepValueRight + sizeValuePx;
 		}
 			
 		
 	} else if (e.keyCode === 38) {
+		let makeDirection = document.getElementById("panacek").src = 'obrazky/panacek-nahoru.png'
 		if (getActualPosition().top <= 0) {
 			makeStep = document.getElementById("panacek").style.top = 0 + sizeValuePx;
 		} else {
@@ -65,6 +68,7 @@ function move(e) {
 		}
 
 	} else if (e.keyCode === 40) {
+		let makeDirection = document.getElementById("panacek").src = 'obrazky/panacek.png'
 		if(getActualPosition().bottom < window.innerHeight){
 			makeStep = document.getElementById("panacek").style.top = getActualPosition().top + stepValueRight + sizeValuePx;
 
@@ -120,6 +124,9 @@ function scoreCount(){
 		playSound(fanfareSound);
 		}
 }
+
+
+
 
 
 /*Při každém pohybu testujeme, zda se panáček neprotíná s mincí - v JS připravená podmínka pro průnik dvou obdélníků.**

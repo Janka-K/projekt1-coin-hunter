@@ -78,14 +78,19 @@ function move(e) {
 	}
 
 	if (!(panacekX + panacekWidth < minceX || minceX + minceWidth < panacekX || panacekY + panacekHeight < minceY || minceY + minceHeight < panacekY)) {
+		scoreCount();
 		playSound(coinSound);
 		coinMove();
-		scoreCount();
+	
 		
-	} 
+	} else if (count === 1){
+		alert("Tadatada");
+	}
+	
 	playSound(gameSound);
 
 }
+
 
 
 function coinRandomPositionX() {
@@ -128,16 +133,8 @@ function scoreCount(){
 
 
 
-
-/*Při každém pohybu testujeme, zda se panáček neprotíná s mincí - v JS připravená podmínka pro průnik dvou obdélníků.**
-/*if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || panacekY + panacekVyska < minceY || minceY + minceVyska < panacekY)) {
-*/
-
-
 /* je potreba zobrazit viteznou hlasku po dosazeni ciloveho poctu bodu */
-/* je potreba zajistit,aby se panacek natacel do spravne strany */
-
-
+/* po dokonceni a funkcnosti vsech bodu -->> zkusit se zamyslet nad optimalizaci kodu */
 
 
 
